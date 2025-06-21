@@ -6,3 +6,6 @@ pub use create_pool::*;
 
 pub mod deposit_liquidity;
 pub use deposit_liquidity::*;
+
+pub mod swap_exact_tokens_for_tokens;
+pub use swap_exact_tokens_for_tokens::*;

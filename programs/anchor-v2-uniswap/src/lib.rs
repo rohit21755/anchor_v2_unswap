@@ -33,6 +33,18 @@ pub fn add_liquidity(
     deposit_liquidity::deposit_liquidity(ctx, amount_a, amount_b)?;
     Ok(())
 }
+
+pub fn swap_exact_tokens_for_tokens(
+    ctx: Context<SwapExactTokensForTokens>,
+    swap_a: bool,
+    input_amount: u64,
+    min_output_amount: u64,
+) -> Result<()> {
+    msg!("Swapping Exact Tokens for Tokens");
+    
+    swap_exact_tokens_for_tokens::swap_exact_tokens_for_tokens(ctx, swap_a, input_amount, min_output_amount)?;
+    Ok(())
+}
 }
 
 #[derive(Accounts)]
