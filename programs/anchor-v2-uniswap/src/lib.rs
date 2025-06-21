@@ -45,7 +45,14 @@ pub fn swap_exact_tokens_for_tokens(
     swap_exact_tokens_for_tokens::swap_exact_tokens_for_tokens(ctx, swap_a, input_amount, min_output_amount)?;
     Ok(())
 }
+pub fn withdraw_liquidity(
+    ctx: Context<WithdrawLiquidity>,
+    amount: u64,
+) -> Result<()> {
+    msg!("Withdrawing Liquidity");
+    
+    withdraw_liquidity::withdraw_liquidity(ctx, amount)?;
+    Ok(())
+}
 }
 
-#[derive(Accounts)]
-pub struct Initialize {}

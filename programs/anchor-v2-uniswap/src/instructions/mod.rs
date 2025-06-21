@@ -9,3 +9,6 @@ pub use deposit_liquidity::*;
 
 pub mod swap_exact_tokens_for_tokens;
 pub use swap_exact_tokens_for_tokens::*;
+
+pub mod withdraw_liquidity;
+pub use withdraw_liquidity::*;
