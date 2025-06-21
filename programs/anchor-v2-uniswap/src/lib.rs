@@ -1,17 +1,38 @@
 use anchor_lang::prelude::*;
-mod state;
-mod constants;
-mod errors;
+pub mod state;
+pub mod constants;
+pub mod errors;
+pub mod instructions;
+
+pub use instructions::*;
 declare_id!("EWG9BxbMHbCdqsVeu7mKcPua7VetUy2adZciWKonZKgy");
 
 #[program]
 pub mod anchor_v2_uniswap {
     use super::*;
 
-    pub fn initialize(ctx: Context<Initialize>) -> Result<()> {
+    pub fn initialize_amm(ctx: Context<CreateAmm>, id: Pubkey, fee: u16) -> Result<()> {
         msg!("Greetings from: {:?}", ctx.program_id);
+        msg!("Initializing AMM with ID: {:?} and Fee: {}", id, fee);
+        create_amm::create_amm(ctx, id, fee)?;
         Ok(())
     }
+
+    pub fn initialize_pool(ctx: Context<CreatePool>, mint_a: Pubkey, mint_b: Pubkey) -> Result<()> {
+        msg!("Initializing Pool");
+        create_pool::create_pool(ctx, mint_a, mint_b)?;
+        Ok(())
+    }
+pub fn add_liquidity(
+    ctx: Context<DepositLiquidity>,
+    amount_a: u64,
+    amount_b: u64,
+) -> Result<()> {
+    msg!("Adding Liquidity");
+    
+    deposit_liquidity::deposit_liquidity(ctx, amount_a, amount_b)?;
+    Ok(())
+}
 }
 
 #[derive(Accounts)]
